@@ -1,12 +1,12 @@
-import styles from "./UpdateClientForm.module.scss";
+import styles from "./UpdateProducttForm.module.scss";
 
-const UpdateClientForm = ({
+const UpdateProducttForm = ({
   setNameToUpdate,
   nameToUpdate,
-  setAddressToUpdate,
-  addressToUpdate,
-  numberToUpdate,
-  setNumberToUpdate,
+  setPriceToUpdate,
+  priceToUpdate,
+  stockToUpdate,
+  setStockToUpdate,
   setIdToUpdate,
   handleUpdate,
   setShowUpdateForm,
@@ -17,8 +17,8 @@ const UpdateClientForm = ({
         className={styles.background}
         onClick={() => {
           setNameToUpdate("");
-          setAddressToUpdate("");
-          setNumberToUpdate("");
+          setPriceToUpdate("");
+          setStockToUpdate("");
           setIdToUpdate("");
           setShowUpdateForm(false);
         }}
@@ -36,24 +36,24 @@ const UpdateClientForm = ({
           onChange={(e) => setNameToUpdate(e.target.value)}
         />
         <label htmlFor="direccion-cliente-input" className={styles.label}>
-          Dirección
+          Precio
         </label>
         <input
-          type="text"
+          type="number"
           className={styles.input}
           id="direccion-cliente-input"
-          value={addressToUpdate}
+          value={priceToUpdate}
           onChange={(e) => setAddressToUpdate(e.target.value)}
         />
         <label htmlFor="telefono-cliente-input" className={styles.label}>
-          Teléfono
+          Stock
         </label>
         <input
           type="number"
           className={styles.input}
           id="telefono-cliente-input"
-          value={numberToUpdate}
-          onChange={(e) => setNumberToUpdate(e.target.value)}
+          value={stockToUpdate}
+          onChange={(e) => setStockToUpdate(e.target.value)}
         />
         <input
           type="submit"
@@ -65,4 +65,4 @@ const UpdateClientForm = ({
   );
 };
 
-export default UpdateClientForm;
+export default UpdateProducttForm;
