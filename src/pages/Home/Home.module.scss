@@ -1,0 +1,10 @@
+.home {
+  height: calc(100vh - 70px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.welcome {
+  font-size: 48px;
+  font-weight: 600;
+}
