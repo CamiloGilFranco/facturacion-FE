@@ -1,0 +1,52 @@
+.new_client {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: transparent;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.background {
+  background-color: #0008;
+  width: 100%;
+  height: 100%;
+}
+
+.form_container {
+  width: 50%;
+  min-width: 370px;
+  background-color: aliceblue;
+  border: solid 3px darkblue;
+  position: absolute;
+  border-radius: 15px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 15px;
+}
+
+.label {
+  margin-top: 10px;
+}
+
+.input {
+  padding: 3px;
+  width: 100%;
+  text-align: center;
+  font-size: 16px;
+}
+
+.submit_button {
+  margin-top: 15px;
+  background-color: darkblue;
+  color: white;
+  font-size: 16px;
+  font-weight: 600;
+  padding: 5px;
+  border-radius: 5px;
+  cursor: pointer;
+}
