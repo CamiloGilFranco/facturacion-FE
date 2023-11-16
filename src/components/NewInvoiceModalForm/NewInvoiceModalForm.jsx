@@ -19,6 +19,7 @@ const NewInvoiceModalForm = ({
   const [invoiceProductList, setInvoiceProductList] = useState([]);
   const [productQuantity, setProductQuantity] = useState(0);
   const [total, setTotal] = useState(0);
+  const [quantityAvailable, setQuantityAvailable] = useState(0);
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -83,6 +84,24 @@ const NewInvoiceModalForm = ({
     });
   }, [invoiceProductList]);
 
+  const quantityAvailableCalc = (event) => {
+    setProductName(event.target.value);
+
+    if (event.target.value === "Elige uno") {
+      setQuantityAvailable(0);
+      return;
+    }
+
+    const productQuantityFound = productsList.find(
+      (e) => e.NOMBRE_PRODUCTO === event.target.value
+    );
+
+    console.log(productQuantityFound.STOCK_PRODUCTO);
+
+    setQuantityAvailable(productQuantityFound.STOCK_PRODUCTO);
+    return;
+  };
+
   return (
     <div className={styles.new_client}>
       <div
@@ -141,9 +160,7 @@ const NewInvoiceModalForm = ({
                 id=""
                 className={styles.select_products}
                 value={productName}
-                onChange={(e) => {
-                  setProductName(e.target.value);
-                }}
+                onChange={quantityAvailableCalc}
               >
                 <option value="Elige uno">Elige uno</option>
                 {productsList.map((product, index) => {
@@ -161,6 +178,7 @@ const NewInvoiceModalForm = ({
               </label>
               <input
                 type="number"
+                placeholder={`Máximo ${quantityAvailable}`}
                 className={styles.quantity_input}
                 onChange={(e) => setProductQuantity(e.target.value)}
               />
