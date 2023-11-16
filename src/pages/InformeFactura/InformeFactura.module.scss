@@ -1,0 +1,152 @@
+.informe_factura {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.factura {
+  border: 2px solid black;
+  width: 800px;
+  padding: 20px;
+  margin-top: 40px;
+  margin-bottom: 100px;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.title {
+  font-weight: 500;
+}
+
+.numero_factura {
+  font-weight: 700;
+}
+
+.logo {
+  width: 250px;
+}
+
+.client_data {
+  display: flex;
+  margin-top: 30px;
+}
+
+.client_data_left {
+  width: 528px;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.client_data_title {
+  background-color: darkgray;
+  width: 105px;
+  display: flex;
+  justify-content: flex-end;
+  font-weight: 600;
+  height: fit-content;
+  padding: 3px;
+  border-bottom: 1px solid darkgray;
+}
+
+.client_data_item {
+  height: fit-content;
+  width: 423px;
+  padding: 3px;
+  border-bottom: 1px solid black;
+}
+
+.border_top {
+  border-top: 1px solid black;
+}
+
+.border_top_grey {
+  border-top: 1px solid darkgrey;
+}
+
+.client_data_right {
+  width: 228px;
+  display: flex;
+  flex-direction: column;
+}
+
+.client_data_title_right {
+  background-color: darkgray;
+  width: 228px;
+  height: 50.5px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: 600;
+  padding: 3px;
+}
+
+.client_data_item_right {
+  height: 50.5px;
+  width: 228px;
+  border-bottom: 1px solid black;
+  border-left: 1px solid black;
+  border-right: 1px solid black;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.table {
+  margin-top: 30px;
+  border: 1px solid black;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+.table_header {
+  background-color: darkgray;
+}
+
+.column1 {
+  padding: 3px 0;
+  width: 55%;
+}
+
+.column2 {
+  width: 15%;
+}
+
+.column3 {
+  width: 55%;
+  padding-top: 5px;
+  font-weight: 500;
+  text-align: start;
+  padding-left: 5px;
+}
+
+.column4 {
+  width: 15%;
+  padding-top: 5px;
+  font-weight: 500;
+}
+
+.column5 {
+  width: 15%;
+  text-align: end;
+  padding: 3px 0;
+  font-weight: 500;
+  padding-right: 5px;
+}
+
+.total_container {
+  display: flex;
+  margin-top: 30px;
+  justify-content: end;
+}
+
+.total {
+  width: 113px;
+  text-align: end;
+  font-weight: 700;
+  background-color: darkgray;
+  padding: 3px 5px;
+}

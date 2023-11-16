@@ -4,6 +4,7 @@ export const routes = {
   productos: "/productos",
   productos: "/productos",
   facturas: "/facturas",
+  informeFactura: "/facturas/:NUMERO_FACTURA",
   reporte: "/reporte",
   api: "http://localhost:8080/api/",
 };

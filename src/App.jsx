@@ -9,6 +9,7 @@ import toastStyle from "react-toastify/dist/ReactToastify.css";
 import Productos from "./pages/Productos/Productos";
 import Facturas from "./pages/Facturas/Facturas";
 import Reporte from "./pages/Reporte/Reporte";
+import InformeFactura from "./pages/InformeFactura/InformeFactura";
 
 function App() {
   return (
@@ -20,6 +21,7 @@ function App() {
         <Route path={routes.productos} element={<Productos />} />
         <Route path={routes.facturas} element={<Facturas />} />
         <Route path={routes.reporte} element={<Reporte />} />
+        <Route path={routes.informeFactura} element={<InformeFactura />} />
       </Routes>
       <ToastContainer
         className={toastStyle}
