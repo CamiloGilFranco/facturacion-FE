@@ -9,6 +9,8 @@ import Swal from "sweetalert2";
 import { toast } from "react-toastify";
 import UpdateClientForm from "../../components/UpdateClientForm/UpdateClientForm";
 import NewInvoiceModalForm from "../../components/NewInvoiceModalForm/NewInvoiceModalForm";
+import dolar from "../../assets/dolar.svg";
+import { useNavigate } from "react-router-dom";
 
 const Facturas = () => {
   const [showForm, setShowForm] = useState(false);
@@ -17,6 +19,8 @@ const Facturas = () => {
   const [showUpdateForm, setShowUpdateForm] = useState(false);
   const [productsList, setProductsList] = useState([]);
   const [clientsList, setClientsList] = useState([]);
+
+  const navigate = useNavigate();
 
   useEffect(() => {
     getData();
@@ -79,6 +83,7 @@ const Facturas = () => {
         <span className={styles.campoh}>Valor </span>
         <span className={styles.button}></span>
         <span className={styles.button}></span>
+        <span className={styles.button}></span>
       </div>
       <div className={styles.list_container}>
         {invoiceList.map((factura, index) => {
@@ -115,10 +120,19 @@ const Facturas = () => {
               <span
                 className={styles.button_action}
                 onClick={() => {
-                  setShowUpdateForm(true);
+                  /* setShowUpdateForm(true); */
+                  toast.info("Esta función se encuentra en mantenimiento");
                 }}
               >
                 <img src={updateImg} alt="" className={styles.icon} />
+              </span>
+              <span
+                className={styles.button_action}
+                onClick={() => {
+                  navigate(`${routes.facturas}/${factura.NUMERO_FACTURA}`);
+                }}
+              >
+                <img src={dolar} alt="" className={styles.icon} />
               </span>
             </div>
           );
