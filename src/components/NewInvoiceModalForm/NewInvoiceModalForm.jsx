@@ -3,6 +3,7 @@ import styles from "./NewInvoiceModalForm.module.scss";
 import { toast } from "react-toastify";
 import { routes } from "../../constants/routes";
 import axios from "axios";
+import cross from "../../assets/crosss.svg";
 
 const NewInvoiceModalForm = ({
   setShowForm,
@@ -57,6 +58,11 @@ const NewInvoiceModalForm = ({
       return e.NOMBRE_PRODUCTO === productName;
     });
 
+    if (productName === "Elige uno") {
+      toast.error("Debes elegir un producto");
+      return;
+    }
+
     if (targetProduct.STOCK_PRODUCTO < productQuantity) {
       toast.error("No hay suficientes unidades, prueba otra cantidad");
       return;
@@ -67,21 +73,69 @@ const NewInvoiceModalForm = ({
       return;
     }
 
+    const existingProduct = invoiceProductList.findIndex(
+      (element) => element.NOMBRE_PRODUCTO === productName
+    );
+
+    const foundToStock = productsList.find(
+      (element) => element.NOMBRE_PRODUCTO === productName
+    );
+
+    if (existingProduct !== -1) {
+      if (
+        parseInt(invoiceProductList[existingProduct].cantidad) +
+          parseInt(productQuantity) >
+        foundToStock.STOCK_PRODUCTO
+      ) {
+        toast.error(
+          "Se supero el numero de unidades disponibles, reduce la cantidad"
+        );
+        return;
+      }
+
+      const originalProduct = {
+        ...invoiceProductList[existingProduct],
+        cantidad:
+          parseInt(invoiceProductList[existingProduct].cantidad) +
+          parseInt(productQuantity),
+        newStock:
+          foundToStock.STOCK_PRODUCTO -
+          invoiceProductList[existingProduct].cantidad -
+          productQuantity,
+      };
+
+      const newArray = [...invoiceProductList];
+      newArray.splice(existingProduct, 1);
+
+      setInvoiceProductList([...newArray, originalProduct]);
+      setProductName("Elige uno");
+      setProductQuantity(0);
+      setQuantityAvailable(0);
+
+      setShowAddProduct(false);
+      return;
+    }
+
+    const newStock = foundToStock.STOCK_PRODUCTO - productQuantity;
+
     setInvoiceProductList([
       ...invoiceProductList,
-      { ...targetProduct, cantidad: productQuantity },
+      { ...targetProduct, cantidad: productQuantity, newStock },
     ]);
 
     setProductName("Elige uno");
     setProductQuantity(0);
+    setQuantityAvailable(0);
 
     setShowAddProduct(false);
   };
 
   useEffect(() => {
+    let subtotal = 0;
     invoiceProductList.forEach((e) => {
-      setTotal(e.PRECIO_PRODUCTO * e.cantidad + total);
+      subtotal = e.PRECIO_PRODUCTO * e.cantidad + subtotal;
     });
+    setTotal(subtotal);
   }, [invoiceProductList]);
 
   const quantityAvailableCalc = (event) => {
@@ -96,17 +150,30 @@ const NewInvoiceModalForm = ({
       (e) => e.NOMBRE_PRODUCTO === event.target.value
     );
 
-    console.log(productQuantityFound.STOCK_PRODUCTO);
-
     setQuantityAvailable(productQuantityFound.STOCK_PRODUCTO);
     return;
+  };
+
+  const handleDeleteItem = (producto) => {
+    const index = invoiceProductList.findIndex(
+      (e) => e.NOMBRE_PRODUCTO === producto.NOMBRE_PRODUCTO
+    );
+
+    const newArray = [...invoiceProductList];
+
+    newArray.splice(index, 1);
+
+    setInvoiceProductList(newArray);
   };
 
   return (
     <div className={styles.new_client}>
       <div
         className={styles.background}
-        onClick={() => setShowForm(false)}
+        onClick={() => {
+          setShowForm(false);
+          setRefresh(!refresh);
+        }}
       ></div>
       <form className={styles.form_container} onSubmit={handleSubmit}>
         <h2 className={styles.subtitle}>Nueva Factura</h2>
@@ -133,6 +200,7 @@ const NewInvoiceModalForm = ({
           <span className={styles.header_table_item}>V. Unitario</span>
           <span className={styles.header_table_item}>Cantidad</span>
           <span className={styles.header_table_item}>Valor</span>
+          <span className={styles.header_table_item2}></span>
         </div>
 
         {invoiceProductList.map((product, index) => {
@@ -147,6 +215,12 @@ const NewInvoiceModalForm = ({
               <span className={styles.table_item}>{product.cantidad}</span>
               <span className={styles.table_item}>
                 {product.PRECIO_PRODUCTO * product.cantidad}
+              </span>
+              <span
+                className={styles.table_item3}
+                onClick={() => handleDeleteItem(product)}
+              >
+                <img src={cross} alt="" className={styles.cross} />
               </span>
             </div>
           );
