@@ -54,9 +54,7 @@ const Facturas = () => {
     }
 
     try {
-      await axios.delete(`${routes.api}factura`, {
-        data: { id: factura.NUMERO_FACTURA },
-      });
+      await axios.delete(`${routes.api}factura/${factura.NUMERO_FACTURA}`);
 
       toast.success("Factura eliminada");
       setRefresh(!refresh);
