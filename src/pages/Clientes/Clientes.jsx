@@ -54,8 +54,6 @@ const Clientes = () => {
         data: { id: client.ID_CLIENTE },
       });
 
-      console.log(client.ID_CLIENTE);
-
       toast.success("Cliente eliminado");
       setRefresh(!refresh);
     } catch (error) {
@@ -109,6 +107,7 @@ const Clientes = () => {
         Crear Cliente
       </span>
       <div className={styles.table_header}>
+        <span className={styles.campoh}>#ID</span>
         <span className={styles.campoh}>Nombre</span>
         <span className={styles.campoh}>Dirección</span>
         <span className={styles.campoh}>Teléfono</span>
@@ -119,6 +118,7 @@ const Clientes = () => {
         {clientsList.map((client, index) => {
           return (
             <div className={styles.client_item} key={index}>
+              <span className={styles.campo}>{client.ID_CLIENTE}</span>
               <span className={styles.campo}>{client.NOMBRE_CLIENTE}</span>
               <span className={styles.campo}>{client.DIRECCIO_CLIENTE}</span>
               <span className={styles.campo}>{client.TELEFON_CLIENTE}</span>

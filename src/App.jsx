@@ -7,6 +7,8 @@ import Clientes from "./pages/Clientes/Clientes";
 import { ToastContainer } from "react-toastify";
 import toastStyle from "react-toastify/dist/ReactToastify.css";
 import Productos from "./pages/Productos/Productos";
+import Facturas from "./pages/Facturas/Facturas";
+import Reporte from "./pages/Reporte/Reporte";
 
 function App() {
   return (
@@ -16,8 +18,8 @@ function App() {
         <Route path={routes.home} element={<Home />} />
         <Route path={routes.clientes} element={<Clientes />} />
         <Route path={routes.productos} element={<Productos />} />
-        <Route path={routes.facturas} element={<Clientes />} />
-        <Route path={routes.reporte} element={<Clientes />} />
+        <Route path={routes.facturas} element={<Facturas />} />
+        <Route path={routes.reporte} element={<Reporte />} />
       </Routes>
       <ToastContainer
         className={toastStyle}

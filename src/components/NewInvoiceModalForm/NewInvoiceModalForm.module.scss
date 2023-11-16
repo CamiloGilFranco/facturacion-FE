@@ -1,0 +1,132 @@
+.new_client {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: transparent;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.background {
+  background-color: #0008;
+  width: 100%;
+  height: 100%;
+}
+
+.form_container {
+  width: 50%;
+  min-width: 370px;
+  background-color: aliceblue;
+  border: solid 3px darkblue;
+  position: absolute;
+  border-radius: 15px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 15px;
+}
+
+.label {
+  margin-top: 10px;
+}
+
+.input {
+  padding: 3px;
+  width: 100%;
+  text-align: center;
+  font-size: 16px;
+}
+
+.submit_button {
+  margin-top: 15px;
+  background-color: darkblue;
+  color: white;
+  font-size: 16px;
+  font-weight: 600;
+  padding: 5px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.product_sub_form {
+  display: flex;
+  width: 100%;
+  justify-content: center;
+  gap: 10px;
+  align-items: center;
+  flex-wrap: wrap;
+  margin: 15px 0;
+  border: 1px black solid;
+  border-radius: 15px;
+}
+
+.sub_container1 {
+  display: flex;
+  flex-direction: column;
+  width: 70%;
+}
+.sub_container2 {
+  display: flex;
+  flex-direction: column;
+  width: 25%;
+}
+
+.select_products {
+  width: 100%;
+  padding: 3px;
+  font-size: 16px;
+}
+
+.quantity_input {
+  width: 100%;
+  padding: 3px;
+  font-size: 16px;
+  text-align: center;
+}
+
+.add_product_button {
+  background-color: darkblue;
+  padding: 10px;
+  cursor: pointer;
+  color: white;
+  font-weight: 600;
+  border-radius: 10px;
+  margin-bottom: 15px;
+  margin-top: 15px;
+}
+
+.product_item_header {
+  display: flex;
+  width: 100%;
+  margin-top: 15px;
+}
+
+.header_table_item {
+  width: 25%;
+  text-align: center;
+  color: white;
+  background-color: grey;
+  font-weight: 600;
+  font-size: 18px;
+  padding: 5px 0;
+}
+
+.product_item {
+  display: flex;
+  width: 100%;
+}
+
+.table_item {
+  width: 25%;
+  text-align: center;
+  padding: 5px 0;
+  border-bottom: 1px solid black;
+}
+
+.total {
+  font-size: 30px;
+  font-weight: 700;
+}
