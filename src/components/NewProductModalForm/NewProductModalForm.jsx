@@ -4,7 +4,12 @@ import { toast } from "react-toastify";
 import { routes } from "../../constants/routes";
 import axios from "axios";
 
-const NewProductModalForm = ({ setShowForm, setRefresh, refresh }) => {
+const NewProductModalForm = ({
+  setShowForm,
+  setRefresh,
+  refresh,
+  productsList,
+}) => {
   const [NOMBRE_PRODUCTO, setNOMBRE_PRODUCTO] = useState("");
   const [PRECIO_PRODUCTO, setPRECIO_PRODUCTO] = useState("");
   const [STOCK_PRODUCTO, setSTOCK_PRODUCTO] = useState("");
@@ -24,6 +29,15 @@ const NewProductModalForm = ({ setShowForm, setRefresh, refresh }) => {
 
     if (!STOCK_PRODUCTO) {
       toast.error("El producto debe tener stock");
+      return;
+    }
+
+    const productFound = productsList.find(
+      (element) => element.NOMBRE_PRODUCTO === NOMBRE_PRODUCTO
+    );
+
+    if (productFound) {
+      toast.error("Este producto ya existe");
       return;
     }
 

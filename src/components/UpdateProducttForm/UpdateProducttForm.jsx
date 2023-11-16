@@ -43,7 +43,7 @@ const UpdateProducttForm = ({
           className={styles.input}
           id="direccion-cliente-input"
           value={priceToUpdate}
-          onChange={(e) => setAddressToUpdate(e.target.value)}
+          onChange={(e) => setPriceToUpdate(e.target.value)}
         />
         <label htmlFor="telefono-cliente-input" className={styles.label}>
           Stock

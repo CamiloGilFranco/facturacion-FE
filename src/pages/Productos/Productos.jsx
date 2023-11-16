@@ -148,6 +148,7 @@ const Productos = () => {
           setShowForm={setShowForm}
           setRefresh={setRefresh}
           refresh={refresh}
+          productsList={productsList}
         />
       ) : null}
       {showUpdateForm ? (
