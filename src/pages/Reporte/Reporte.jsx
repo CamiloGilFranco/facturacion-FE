@@ -2,16 +2,25 @@ import styles from "./Reporte.module.scss";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { routes } from "../../constants/routes";
+import { Chart as ChartJS, ArcElement, Tooltip, Legend } from "chart.js";
+import { Pie } from "react-chartjs-2";
+
+ChartJS.register(ArcElement, Tooltip, Legend);
 
 const Reporte = () => {
   const [invoiceData, setInvoiceData] = useState(null);
   const [total, setTotal] = useState(0);
+  const [graphData, setGraphData] = useState({});
 
   const getData = async () => {
     try {
       const invoice = await axios.get(`${routes.api}factura/report/main`);
 
-      setInvoiceData(invoice.data.productos);
+      const arr = invoice.data.productos;
+
+      arr.sort((a, b) => b.vendidos - a.vendidos);
+
+      setInvoiceData(arr);
     } catch (error) {
       console.log(error);
     }
@@ -23,7 +32,12 @@ const Reporte = () => {
 
   useEffect(() => {
     totalCalc();
+    setData();
   }, [invoiceData]);
+
+  const random = () => {
+    return Math.floor(Math.random() * 256);
+  };
 
   const totalCalc = () => {
     let newTotal = 0;
@@ -33,7 +47,29 @@ const Reporte = () => {
     setTotal(newTotal);
   };
 
-  console.log(invoiceData);
+  const setData = () => {
+    const labels = [];
+    const data = [];
+    const backgroundColor = [];
+    const label = "U. VENDIDAS";
+
+    invoiceData?.forEach((e) => {
+      labels.push(e.NOMBRE_PRODUCTO);
+      data.push(e.vendidos);
+      backgroundColor.push(`rgba(${random()}, ${random()}, ${random()}, 1)`);
+    });
+
+    setGraphData({
+      labels,
+      datasets: [
+        {
+          label,
+          data,
+          backgroundColor,
+        },
+      ],
+    });
+  };
 
   return (
     <div className={styles.informe_factura}>
@@ -73,6 +109,11 @@ const Reporte = () => {
         <div className={styles.total_container}>
           <span className={styles.total}>TOTAL:</span>
           <span className={styles.total}>${total.toLocaleString()}</span>
+        </div>
+        <div className={styles.graph}>
+          {!invoiceData || invoiceData.length === 0 || total === 0 ? null : (
+            <Pie data={graphData} />
+          )}
         </div>
       </div>
     </div>

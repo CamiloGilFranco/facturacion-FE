@@ -107,6 +107,7 @@ const Productos = () => {
         Nuevo Producto
       </span>
       <div className={styles.table_header}>
+        <span className={styles.campoh}># ID</span>
         <span className={styles.campoh}>Nombre</span>
         <span className={styles.campoh}>Precio</span>
         <span className={styles.campoh}>Stock</span>
@@ -117,8 +118,11 @@ const Productos = () => {
         {productsList.map((product, index) => {
           return (
             <div className={styles.client_item} key={index}>
+              <span className={styles.campo}>{product.ID_PRODUCTO}</span>
               <span className={styles.campo}>{product.NOMBRE_PRODUCTO}</span>
-              <span className={styles.campo}>{product.PRECIO_PRODUCTO}</span>
+              <span className={styles.campo}>
+                ${product.PRECIO_PRODUCTO.toLocaleString()}
+              </span>
               <span className={styles.campo}>{product.STOCK_PRODUCTO}</span>
               <span
                 className={styles.button_action}
