@@ -82,7 +82,7 @@ const Facturas = () => {
         <span className={styles.campoh}>Cliente</span>
         <span className={styles.campoh}>Valor </span>
         <span className={styles.button}></span>
-        <span className={styles.button}></span>
+
         <span className={styles.button}></span>
       </div>
       <div className={styles.list_container}>
@@ -117,15 +117,7 @@ const Facturas = () => {
               >
                 <img src={deleteImg} alt="" className={styles.icon} />
               </span>
-              <span
-                className={styles.button_action}
-                onClick={() => {
-                  /* setShowUpdateForm(true); */
-                  toast.info("Esta función se encuentra en mantenimiento");
-                }}
-              >
-                <img src={updateImg} alt="" className={styles.icon} />
-              </span>
+
               <span
                 className={styles.button_action}
                 onClick={() => {
